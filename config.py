@@ -9,12 +9,12 @@ RANDOM_SEED: int = 42
 # Model paths and config #
 ##########################
 
-MODEL_VERSION: str = "V2.4"
+MODEL_VERSION: str = "Sierra Model"
 PB_MODEL: str = "checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_Model"
 # MODEL_PATH = PB_MODEL # This will load the protobuf model
-MODEL_PATH: str = "checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_Model_FP32.tflite"
+MODEL_PATH: str = "checkpoints/GCP_Model/BirdNET_CA_RAW_TYPE_C_CSO_CPLUS_SNE_UNLABELED_epoch_29.tflite"
 MDATA_MODEL_PATH: str = "checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_MData_Model_V2_FP16.tflite"
-LABELS_FILE: str = "checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_Labels.txt"
+LABELS_FILE: str = "checkpoints/GCP_Model/BirdNET_CA_RAW_TYPE_C_CSO_CPLUS_SNE_UNLABELED_epoch_29_Labels.txt"
 TRANSLATED_LABELS_PATH: str = "labels/V2.4"
 
 # Path to custom trained classifier
@@ -73,7 +73,7 @@ INPUT_PATH: str = "example/"
 OUTPUT_PATH: str = "example/"
 
 # Supported file types
-ALLOWED_FILETYPES: list[str] = ["wav", "flac", "mp3", "ogg", "m4a", "wma", "aiff", "aif"]
+ALLOWED_FILETYPES = ["wav", "flac", "mp3", "ogg", "m4a", "wma", "aiff", "aif"]
 
 # Number of threads to use for inference.
 # Can be as high as number of CPUs in your system
@@ -107,7 +107,7 @@ USE_NOISE: bool = False
 # Specifies the output format. 'table' denotes a Raven selection table,
 # 'audacity' denotes a TXT file with the same format as Audacity timeline labels
 # 'csv' denotes a generic CSV file with start, end, species and confidence.
-RESULT_TYPES: set[str] | list[str] = {"table"}
+RESULT_TYPES = {"table"}
 OUTPUT_RAVEN_FILENAME: str = "BirdNET_SelectionTable.txt"  # this is for combined Raven selection tables only
 OUTPUT_RTABLE_FILENAME: str = "BirdNET_RTable.csv"
 OUTPUT_KALEIDOSCOPE_FILENAME: str = "BirdNET_Kaleidoscope.csv"
@@ -129,7 +129,7 @@ TRAIN_DATA_PATH: str = "train_data/"
 SAMPLE_CROP_MODE: str = "center"
 
 # List of non-event classes
-NON_EVENT_CLASSES: list[str] = ["noise", "other", "background", "silence"]
+NON_EVENT_CLASSES = ["noise", "other", "background", "silence"]
 
 # Upsampling settings
 UPSAMPLING_RATIO: float = 0.0
@@ -192,9 +192,9 @@ MULTI_LABEL: bool = False
 # Misc runtime vars #
 #####################
 CODES = {}
-LABELS: list[str] = []
-TRANSLATED_LABELS: list[str] = []
-SPECIES_LIST: list[str] = []
+LABELS = []
+TRANSLATED_LABELS = []
+SPECIES_LIST = []
 ERROR_LOG_FILE: str = "error_log.txt"
 FILE_LIST = []
 FILE_STORAGE_PATH: str = ""
