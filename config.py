@@ -12,9 +12,9 @@ RANDOM_SEED: int = 42
 MODEL_VERSION: str = "V2.4"
 PB_MODEL: str = "checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_Model"
 # MODEL_PATH = PB_MODEL # This will load the protobuf model
-MODEL_PATH: str = "checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_Model_FP32.tflite"
+MODEL_PATH: str = "checkpoints/GCP_Model/BirdNET_CA_RAW_TYPE_C_CSO_CPLUS_SNE_UNLABELED_epoch_29.tflite"
 MDATA_MODEL_PATH: str = "checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_MData_Model_V2_FP16.tflite"
-LABELS_FILE: str = "checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_Labels.txt"
+LABELS_FILE: str = "checkpoints/GCP_Model/BirdNET_CA_RAW_TYPE_C_CSO_CPLUS_SNE_UNLABELED_epoch_29_Labels.txt"
 TRANSLATED_LABELS_PATH: str = "labels/V2.4"
 
 # Path to custom trained classifier
