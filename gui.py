@@ -203,7 +203,7 @@ def runBatchAnalysis(
 
 def runAnalysis(
     input_path: str,
-    output_path: str | None,
+    output_path: str,
     confidence: float,
     sensitivity: float,
     overlap: float,
@@ -224,7 +224,7 @@ def runAnalysis(
     threads: int,
     input_dir: str,
     skip_existing: bool,
-    progress: gr.Progress | None,
+    progress: gr.Progress,
 ):
     """Starts the analysis.
 
@@ -1983,7 +1983,7 @@ if __name__ == "__main__":
         build_settings()
         build_footer()
 
-    url = demo.queue(api_open=False).launch(prevent_thread_lock=True, quiet=True)[1]
+    url = demo.queue(api_open=False).launch(prevent_thread_lock=True)[1]
     _WINDOW = webview.create_window("BirdNET-Analyzer", url.rstrip("/") + "?__theme=light", min_size=(1024, 768))
 
     with suppress(ModuleNotFoundError):
@@ -1991,4 +1991,4 @@ if __name__ == "__main__":
 
         pyi_splash.close()
 
-    webview.start(private_mode=False)
+    webview.start(debug=True)

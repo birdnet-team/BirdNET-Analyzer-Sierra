@@ -53,7 +53,7 @@ def getHeaderMapping(line: str) -> dict:
     return mapping
 
 
-def parseFolders(apath: str, rpath: str, allowed_result_filetypes: list[str] = ["txt", "csv"]) -> list[dict]:
+def parseFolders(apath: str, rpath: str, allowed_result_filetypes = ["txt", "csv"]):
     """Read audio and result files.
 
     Reads all audio files and BirdNET output inside directory recursively.
@@ -107,7 +107,7 @@ def parseFolders(apath: str, rpath: str, allowed_result_filetypes: list[str] = [
     return flist
 
 
-def parseFiles(flist: list[dict], max_segments=100):
+def parseFiles(flist, max_segments=100):
     """Extracts the segments for all files.
 
     Args:
@@ -117,7 +117,7 @@ def parseFiles(flist: list[dict], max_segments=100):
     Returns:
         TODO @kahst
     """
-    species_segments: dict[str, list] = {}
+    species_segments = {}
 
     is_combined_rfile = len(flist) == 1 and flist[0].get("isCombinedFile", False)
 
@@ -181,7 +181,7 @@ def findSegmentsFromCombined(rfile: str):
         A list of dicts in the form of
         {"audio": afile, "start": start, "end": end, "species": species, "confidence": confidence}
     """
-    segments: list[dict] = []
+    segments = []
 
     # Open and parse result file
     lines = utils.readLines(rfile)
@@ -256,7 +256,7 @@ def findSegments(afile: str, rfile: str):
         A list of dicts in the form of
         {"audio": afile, "start": start, "end": end, "species": species, "confidence": confidence}
     """
-    segments: list[dict] = []
+    segments = []
 
     # Open and parse result file
     lines = utils.readLines(rfile)
@@ -315,7 +315,7 @@ def findSegments(afile: str, rfile: str):
     return segments
 
 
-def extractSegments(item: tuple[tuple[str, list[dict]], float, dict[str]]):
+def extractSegments(item):
     """Saves each segment separately.
 
     Creates an audio file for each species segment.
