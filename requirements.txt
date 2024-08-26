@@ -6,3 +6,4 @@ pywebview==5.1
 tqdm
 bottle
 requests
+keras-tuner
