@@ -56,7 +56,7 @@ def collect_audio_files(path: str, max_files: int = None):
     return sorted(files)
 
 
-def collect_all_files(path: str, filetypes: list[str], pattern: str = ""):
+def collect_all_files(path: str, filetypes, pattern: str = ""):
     """Collects all files of the given filetypes in the given directory.
 
     Args:
@@ -518,7 +518,7 @@ def upsampling(x, y, ratio=0.5, mode="repeat"):
     return x, y
 
 
-def saveToCache(cache_file: str, x_train: np.ndarray, y_train: np.ndarray, labels: list[str]):
+def saveToCache(cache_file: str, x_train: np.ndarray, y_train: np.ndarray, labels):
     """Saves the training data to a cache file.
 
     Args:

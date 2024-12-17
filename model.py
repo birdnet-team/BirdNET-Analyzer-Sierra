@@ -292,7 +292,7 @@ def trainLinearClassifier(
     return classifier, history
 
 
-def saveLinearClassifier(classifier, model_path: str, labels: list[str], mode="replace"):
+def saveLinearClassifier(classifier, model_path: str, labels, mode="replace"):
     """Saves a custom classifier on the hard drive.
 
     Saves the classifier as a tflite model, as well as the used labels in a .txt.
@@ -350,7 +350,7 @@ def saveLinearClassifier(classifier, model_path: str, labels: list[str], mode="r
     utils.save_model_params(model_path.replace(".tflite", "_Params.csv"))
 
 
-def save_raven_model(classifier, model_path, labels: list[str], mode="replace"):
+def save_raven_model(classifier, model_path, labels, mode="replace"):
     import csv
     import json
 

@@ -40,7 +40,7 @@ def loadCodes():
     return codes
 
 
-def generate_raven_table(timestamps: list[str], result: dict[str, list], afile_path: str, result_path: str) -> str:
+def generate_raven_table(timestamps, result, afile_path: str, result_path: str) -> str:
     selection_id = 0
     out_string = RAVEN_TABLE_HEADER
 
@@ -79,7 +79,7 @@ def generate_raven_table(timestamps: list[str], result: dict[str, list], afile_p
     utils.save_result_file(result_path, out_string)
 
 
-def generate_audacity(timestamps: list[str], result: dict[str, list], result_path: str) -> str:
+def generate_audacity(timestamps, result, result_path: str) -> str:
     out_string = ""
 
     # Audacity timeline labels
@@ -99,7 +99,7 @@ def generate_audacity(timestamps: list[str], result: dict[str, list], result_pat
     utils.save_result_file(result_path, out_string)
 
 
-def generate_rtable(timestamps: list[str], result: dict[str, list], afile_path: str, result_path: str) -> str:
+def generate_rtable(timestamps, result, afile_path: str, result_path: str) -> str:
     out_string = RTABLE_HEADER
 
     for timestamp in timestamps:
@@ -132,7 +132,7 @@ def generate_rtable(timestamps: list[str], result: dict[str, list], afile_path: 
     utils.save_result_file(result_path, out_string)
 
 
-def generate_kaleidoscope(timestamps: list[str], result: dict[str, list], afile_path: str, result_path: str) -> str:
+def generate_kaleidoscope(timestamps, result, afile_path: str, result_path: str) -> str:
     out_string = KALEIDOSCOPE_HEADER
 
     folder_path, filename = os.path.split(afile_path)
@@ -167,7 +167,7 @@ def generate_kaleidoscope(timestamps: list[str], result: dict[str, list], afile_
     utils.save_result_file(result_path, out_string)
 
 
-def generate_csv(timestamps: list[str], result: dict[str, list], afile_path: str, result_path: str) -> str:
+def generate_csv(timestamps, result, afile_path: str, result_path: str) -> str:
     out_string = CSV_HEADER
 
     for timestamp in timestamps:
@@ -186,7 +186,7 @@ def generate_csv(timestamps: list[str], result: dict[str, list], afile_path: str
     utils.save_result_file(result_path, out_string)
 
 
-def saveResultFiles(r: dict[str, list], result_files: dict[str, str], afile_path: str):
+def saveResultFiles(r, result_files, afile_path: str):
     """Saves the results to the hard drive.
 
     Args:
@@ -216,7 +216,7 @@ def saveResultFiles(r: dict[str, list], result_files: dict[str, str], afile_path
         generate_csv(timestamps, r, afile_path, result_files["csv"])
 
 
-def combine_raven_tables(saved_results: list[str]):
+def combine_raven_tables(saved_results):
     # Combine all files
     s_id = 1
     time_offset = 0
@@ -279,7 +279,7 @@ def combine_raven_tables(saved_results: list[str]):
         f.writelines((f + "\n" for f in audiofiles))
 
 
-def combine_rtable_files(saved_results: list[str]):
+def combine_rtable_files(saved_results):
     # Combine all files
     with open(os.path.join(cfg.OUTPUT_PATH, cfg.OUTPUT_RTABLE_FILENAME), "w", encoding="utf-8") as f:
         f.write(RTABLE_HEADER)
@@ -303,7 +303,7 @@ def combine_rtable_files(saved_results: list[str]):
                     utils.writeErrorLog(ex)
 
 
-def combine_kaleidoscope_files(saved_results: list[str]):
+def combine_kaleidoscope_files(saved_results):
     # Combine all files
     with open(os.path.join(cfg.OUTPUT_PATH, cfg.OUTPUT_KALEIDOSCOPE_FILENAME), "w", encoding="utf-8") as f:
         f.write(KALEIDOSCOPE_HEADER)
@@ -327,7 +327,7 @@ def combine_kaleidoscope_files(saved_results: list[str]):
                     utils.writeErrorLog(ex)
 
 
-def combine_csv_files(saved_results: list[str]):
+def combine_csv_files(saved_results):
     # Combine all files
     with open(os.path.join(cfg.OUTPUT_PATH, cfg.OUTPUT_CSV_FILENAME), "w", encoding="utf-8") as f:
         f.write(CSV_HEADER)
@@ -351,7 +351,7 @@ def combine_csv_files(saved_results: list[str]):
                     utils.writeErrorLog(ex)
 
 
-def combineResults(saved_results: list[dict[str, str]]):
+def combineResults(saved_results):
 
     if "table" in cfg.RESULT_TYPES:
         combine_raven_tables([f["table"] for f in saved_results])
@@ -366,7 +366,7 @@ def combineResults(saved_results: list[dict[str, str]]):
         combine_csv_files([f["csv"] for f in saved_results])
 
 
-def getSortedTimestamps(results: dict[str, list]):
+def getSortedTimestamps(results):
     """Sorts the results based on the segments.
 
     Args:
@@ -612,7 +612,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--combine_results",
         help="Also outputs a combined file for all the selected result types. If not set combined tables will be generated. Defaults to False.",
-        action=argparse.BooleanOptionalAction,
+        action="store_true",
     )
     parser.add_argument(
         "--threads", type=int, default=min(8, max(1, multiprocessing.cpu_count() // 2)), help="Number of CPU threads."
